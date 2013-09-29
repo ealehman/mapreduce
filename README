@@ -1,0 +1,67 @@
+mrjob
+=====
+A collection of various applications of MapReduce. Programs written for Harvard
+class CS205: Computing Foundations for Computational Science. Included 
+applications of MapReduce include an anagrams finder, an implementation of a
+breadth first search, estimation using trapezoidal integration, and an
+implemntation of Monte Carlo integration. 
+
+author
+=====
+Alex Lehman
+ellelehman@college.harvard.edu
+
+anagrams
+========
+Provided a dictionary of words, this program finds all the possible anagrams 
+and outputs the alphabetically ordered version of the word along with all
+possible anagrams and the number of anagrams per sorted word. A sample input
+text is provided (dictionary.txt) and additionally the output (sampleoutput.txt
+file which is produced when you run Anagrams.py on the sample input file.
+
+breadth_first_search
+====================
+Using the dataset of comic book heroes and the comics they appear in from  the
+work by Alberich, Miro-Julia, & Rossello (2002), BFSPrepare.py and SSBFS.py
+create a graph based on adjacency and then perform a breadth first search. The
+original input file to be used on BFSPrepare.py is labeled_edges.tsv and
+provides list of pairs in the format of "CHARACTER NAME", "COMIC ISSUE" meaning
+that the character appeared in the associated comic issue. 
+
+BFSPrepare.py
+converts the source data into an adjacency list format in which there is a key
+for each character name associated with a pair. Each associated pair contains
+this character's distance to the origin node and a list of characters that are
+also associated with that vertex. 
+
+Source Data example format:
+key		value
+"Human Robot",	"WI?9"
+"Captain America",	"AVF 4"
+"Human Robot",	"AVF 4"
+"Old Skull",	"AA2 35"
+
+Prepared Data example format:
+"Human Robot",	[null,["Captain America"]]
+"Captain America",	[0,["Human Robot"]]
+"Old Skull",	[null,[]]
+
+SSBFS.py
+Takes a graph (like the one outputted in BFSPrepare.py) and performs a single
+source breadth first source. BFSGraphOutput.txt is an example of an output
+created by this program when the input file is prepared.txt (Provided by Isaac
+Slavitt). In order to change the source node, simply edit the distance value of
+the character you want to be your source to 0 and run SSBFS on that graph.
+
+trap_integration
+================
+Uses trapezoidal integration and MapReduce to estimate the value of pi/4. Two
+versions are provided- one that demonstrates it simply, and one that uses
+in-mapper combining.
+
+monte_carlo
+===========
+An in-mapper combining implementation of Monte Carlo integration to estimate
+the value of pi/4.
+
+ 
